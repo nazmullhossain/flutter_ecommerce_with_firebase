@@ -23,12 +23,10 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
-
-
   DarkThemeProvider themeChangeProvider = DarkThemeProvider();
   void getCurrentAppTheme() async {
-    themeChangeProvider.setDarkTheme = await themeChangeProvider.darkThemePrefs.getTheme();
+    themeChangeProvider.setDarkTheme =
+        await themeChangeProvider.darkThemePrefs.getTheme();
   }
 
   @override
@@ -37,27 +35,22 @@ class _MyAppState extends State<MyApp> {
     // TODO: implement initState
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
-
     return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_){
-          return themeChangeProvider;
-        })
-      ],
-
-
-          child: Consumer<DarkThemeProvider>(builder: (context,themeProvider,child) {
-              return MaterialApp(
-                debugShowCheckedModeBanner: false,
-                theme: Styles.themeData(themeProvider.getDarkTheme, context),
-                home: BottomBarPage(),
-              );
-            }
-          )
-
-
-    );
+        providers: [
+          ChangeNotifierProvider(create: (_) {
+            return themeChangeProvider;
+          })
+        ],
+        child: Consumer<DarkThemeProvider>(
+            builder: (context, themeProvider, child) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            theme: Styles.themeData(themeProvider.getDarkTheme, context),
+            home: BottomBarPage(),
+          );
+        }));
   }
 }
