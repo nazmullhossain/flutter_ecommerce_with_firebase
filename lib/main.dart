@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutterecommerce/pages/btm_bar_page.dart';
 import 'package:flutterecommerce/pages/home_page.dart';
 import 'package:flutterecommerce/provider/dart_theme_provider.dart';
 import 'package:provider/provider.dart';
@@ -51,7 +52,7 @@ class _MyAppState extends State<MyApp> {
               return MaterialApp(
                 debugShowCheckedModeBanner: false,
                 theme: Styles.themeData(themeProvider.getDarkTheme, context),
-                home: HomePage(),
+                home: BottomBarPage(),
               );
             }
           )
