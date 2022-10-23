@@ -109,7 +109,29 @@ class _UserPageState extends State<UserPage> {
                 value: themeState.getDarkTheme,
               ),
               CustomListTileWidget(
-                  onPressed: () {},
+                  onPressed: ()async {
+                    await showDialog(
+                      barrierDismissible: false,
+                        context: context, builder: (context){
+                      return AlertDialog(
+
+                        title: Row(
+                          children: [
+                            Image.asset("images/warning-sign.png",height: 20,width: 20,fit: BoxFit.cover,),
+                            SizedBox(width: 8,),
+                            Text("Singout")
+                          ],
+                        ),
+                        content: Text("Are you wanna to singout?"),
+                        actions: [
+                          ElevatedButton(onPressed: (){
+                            Navigator.pop(context);
+                          }, child: Text("Cancel")),
+                          ElevatedButton(onPressed: (){}, child: Text("Ok")),
+                        ],
+                      );
+                    });
+                  },
                   leadingIcon: IconlyLight.lock,
                   subtileText: "Subtitle here",
                   titleText: "Logout",
