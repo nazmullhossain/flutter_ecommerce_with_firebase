@@ -16,28 +16,33 @@ class BottomBarPage extends StatefulWidget {
 }
 
 class _BottomBarPageState extends State<BottomBarPage> {
-  int _selectedIndex=0;
-  final List _pages=[
-    HomePage(),
-    CategoriesPage(),
-    CartPage(),
-    UserPage(),
+  int _selectedIndex = 0;
+  final List<Map<String, dynamic>> _pages = [
+    {"page": HomePage(), "title": "Home Screen"},
+    {"page": CategoriesPage(), "title": "Categories"},
+    {"page": CartPage(), "title": "Cart"},
+    {"page": UserPage(), "title": "User"},
   ];
-  void _selectedPage(int index){
+  void _selectedPage(int index) {
     setState(() {
-      _selectedIndex=index;
+      _selectedIndex = index;
     });
   }
+
   @override
   Widget build(BuildContext context) {
-    final themeState=Provider.of<DarkThemeProvider>(context);
-    bool _isDark=themeState.getDarkTheme;
+    final themeState = Provider.of<DarkThemeProvider>(context);
+    bool _isDark = themeState.getDarkTheme;
     return Scaffold(
-      body: _pages[_selectedIndex],
+      appBar: AppBar(
+        title: Text(_pages[_selectedIndex]['title']),
+        centerTitle: true,
+      ),
+      body: _pages[_selectedIndex]["page"],
       bottomNavigationBar: BottomNavigationBar(
-        unselectedItemColor: _isDark? Colors.black12:Colors.white,
-        backgroundColor: _isDark? Theme.of(context).cardColor:Colors.red,
-        selectedItemColor: _isDark?  Colors.pink:Colors.amber,
+        unselectedItemColor: _isDark ? Colors.black12 : Colors.white,
+        backgroundColor: _isDark ? Theme.of(context).cardColor : Colors.red,
+        selectedItemColor: _isDark ? Colors.pink : Colors.amber,
         //if have any requrment
         // type: BottomNavigationBarType.fixed,
         // showSelectedLabels: false,
@@ -45,15 +50,24 @@ class _BottomBarPageState extends State<BottomBarPage> {
 
         currentIndex: _selectedIndex,
         onTap: _selectedPage,
-        items:  <BottomNavigationBarItem>[
-         BottomNavigationBarItem(icon: Icon(_selectedIndex==0?IconlyBold.home: IconlyLight.home),
-         label: "Home" ),
-         BottomNavigationBarItem(icon: Icon(_selectedIndex==1?IconlyBold.category:IconlyLight.category),
-         label: "Catagories" ),
-         BottomNavigationBarItem(icon: Icon(_selectedIndex==2?IconlyBold.buy:IconlyLight.buy),
-         label: "Cart" ),
-         BottomNavigationBarItem(icon: Icon(_selectedIndex==3?IconlyBold.user2:IconlyLight.user2),
-         label: "User" ),
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+              icon: Icon(
+                  _selectedIndex == 0 ? IconlyBold.home : IconlyLight.home),
+              label: "Home"),
+          BottomNavigationBarItem(
+              icon: Icon(_selectedIndex == 1
+                  ? IconlyBold.category
+                  : IconlyLight.category),
+              label: "Catagories"),
+          BottomNavigationBarItem(
+              icon:
+                  Icon(_selectedIndex == 2 ? IconlyBold.buy : IconlyLight.buy),
+              label: "Cart"),
+          BottomNavigationBarItem(
+              icon: Icon(
+                  _selectedIndex == 3 ? IconlyBold.user2 : IconlyLight.user2),
+              label: "User"),
         ],
       ),
     );
