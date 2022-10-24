@@ -47,6 +47,7 @@ class _BottomBarPageState extends State<BottomBarPage> {
     bool _isDark = themeState.getDarkTheme;
     return Scaffold(
       appBar: AppBar(
+        elevation: 0,
         title: Text(_pages[_selectedIndex]['title']),
         centerTitle: true,
       ),
