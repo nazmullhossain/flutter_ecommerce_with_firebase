@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutterecommerce/pages/btm_bar_page.dart';
+import 'package:flutterecommerce/pages/categories.dart';
 import 'package:flutterecommerce/pages/home_page.dart';
 import 'package:flutterecommerce/provider/dart_theme_provider.dart';
 import 'package:provider/provider.dart';
